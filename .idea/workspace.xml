@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f90892f-daf3-46d7-bde2-d3cb023be828" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/NthPrimeNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/RootHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/RootHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685342075474</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="comparing the queries">
+      <created>1685348544935</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685348544935</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

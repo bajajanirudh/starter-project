@@ -5,8 +5,6 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-
 public class RootHandler implements HttpHandler {
     private final int port;
     public RootHandler (int port){

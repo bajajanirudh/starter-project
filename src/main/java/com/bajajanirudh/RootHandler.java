@@ -13,13 +13,13 @@ public class RootHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) throws IOException {
         String query = he.getRequestURI().getQuery();
+        int answer = -1;
         if (query.startsWith("num=")){
             int find = Integer.parseInt(query.substring(4));
             NthPrimeNumber ans = new NthPrimeNumber(find);
-            int answer = NthPrimeNumber.num;
-            System.out.println("The requested prime number is " + answer);
+            answer = NthPrimeNumber.num;
         }
-        String response = "<h1>Server start success if you see this message</h1>" + "<h1>Port: " + port + "</h1>\n";
+        String response = "The requested prime number is " + answer + "\n";
         he.sendResponseHeaders(200, response.length());
         OutputStream os = he.getResponseBody();
         os.write(response.getBytes());

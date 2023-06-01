@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f90892f-daf3-46d7-bde2-d3cb023be828" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+    <list default="true" id="0f90892f-daf3-46d7-bde2-d3cb023be828" name="Changes" comment="Docker implemented with few improvements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/RootHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/RootHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/NthPrimeNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bajajanirudh/NthPrimeNumber.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685432858469</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Docker implemented with few improvements">
+      <created>1685437730810</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685437730810</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,6 +220,7 @@
     <MESSAGE value="comparing the queries" />
     <MESSAGE value="NthPrime number for query returned" />
     <MESSAGE value="Server Developed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server Developed" />
+    <MESSAGE value="Docker implemented with few improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker implemented with few improvements" />
   </component>
 </project>

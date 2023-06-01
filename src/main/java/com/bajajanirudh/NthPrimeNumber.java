@@ -5,6 +5,7 @@ public class NthPrimeNumber
 {
     public static int num=1;
     public NthPrimeNumber (int index){
+        num=1;
         int n = index;
         int count=0, i;
         while (count < n)

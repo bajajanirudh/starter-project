@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starter-deployment
+  labels:
+    app: starter
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: starter
+  template:
+    metadata:
+      labels:
+        app: starter
+    spec:
+      containers:
+        - name: starter
+          image: us-central1-docker.pkg.dev/bajajanirudh-cdf-intern/starter-project/starter-project:0.1
+          ports:
+            - containerPort: 9000

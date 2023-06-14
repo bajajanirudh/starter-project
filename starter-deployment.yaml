@@ -14,7 +14,8 @@ spec:
         app: starter
     spec:
       containers:
-        - name: starter
+        - command: ["java", "target/classes/com/bajajanirudh/QuickStartSample"]
+          name: starter
           image: us-central1-docker.pkg.dev/bajajanirudh-cdf-intern/starter-project/starter-project:0.1
           ports:
             - containerPort: 9000

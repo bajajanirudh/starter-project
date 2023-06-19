@@ -12,6 +12,12 @@ public class RootHandler implements HttpHandler {
     }
     @Override
     public void handle(HttpExchange he) throws IOException {
+        try {
+            QuickStartSample.publishMetric(1);
+        }catch (Exception e){
+            System.out.println("exception1: " + e);
+            throw new IOException(e);
+        }
         String query = he.getRequestURI().getQuery();
         int answer = -1;
         if (query.startsWith("num=")){
@@ -22,7 +28,17 @@ public class RootHandler implements HttpHandler {
         String response = "The requested prime number is " + answer + "\n";
         he.sendResponseHeaders(200, response.length());
         OutputStream os = he.getResponseBody();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         os.write(response.getBytes());
         os.close();
+        try {
+            QuickStartSample.publishMetric(0.5);
+        }catch (Exception e){
+            throw new IOException(e);
+        }
     }
 }

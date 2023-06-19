@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: starter-deployment
   labels:
     app: starter
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: starter
@@ -14,8 +15,20 @@ spec:
         app: starter
     spec:
       containers:
-        - command: ["java", "target/classes/com/bajajanirudh/QuickStartSample"]
-          name: starter
+        - name: starter
           image: us-central1-docker.pkg.dev/bajajanirudh-cdf-intern/starter-project/starter-project:0.1
+          imagePullPolicy: Always
           ports:
             - containerPort: 9000
+          env:
+            # save Kubernetes metadata as environment variables for use in metrics
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace

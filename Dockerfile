@@ -1,9 +1,7 @@
-FROM maven:3.9.2-eclipse-temurin-8-alpine
+FROM openjdk:8
 
-COPY out/artifacts/starter_project_jar/starter-project.jar .
-
-RUN java -version
+COPY target/starter-project-1.0-SNAPSHOT.jar .
 
 EXPOSE 9000
-
-ENTRYPOINT ["java", "-jar", "./starter-project.jar"]
+ENV LD_BIND_NOW=1
+ENTRYPOINT ["java", "-jar", "./starter-project-1.0-SNAPSHOT.jar"]

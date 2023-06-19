@@ -6,18 +6,18 @@ package com.bajajanirudh;
 import com.google.api.Metric;
 import com.google.api.MonitoredResource;
 import com.google.cloud.monitoring.v3.MetricServiceClient;
-import com.google.monitoring.v3.CreateTimeSeriesRequest;
-import com.google.monitoring.v3.Point;
-import com.google.monitoring.v3.ProjectName;
+import com.google.monitoring.v3.*;
+import com.google.protobuf.util.Timestamps;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Imports the Google Cloud client library
 
 public class QuickStartSample {
 
-    public static void main(String... args) throws Exception {
-        // Your Google Cloud Platform project ID
+    public static void publishMetric(double metricValue) throws Exception{
         String projectId = "bajajanirudh-cdf-intern";
 
 //        if (projectId == null) {
@@ -29,9 +29,12 @@ public class QuickStartSample {
         MetricServiceClient metricServiceClient = MetricServiceClient.create();
 
         // Prepares an individual data point
-        Double metricValue = 3.14;
-        IndividualDataPoint individualDataPoint = new IndividualDataPoint();
-        Point point = individualDataPoint.individualDataPoint(metricValue);
+        TimeInterval interval =
+                TimeInterval.newBuilder()
+                        .setEndTime(Timestamps.fromMillis(System.currentTimeMillis()))
+                        .build();
+        TypedValue value = TypedValue.newBuilder().setDoubleValue(metricValue).build();
+        Point point = Point.newBuilder().setInterval(interval).setValue(value).build();
 
         List<Point> pointList = new ArrayList<>();
         pointList.add(point);
@@ -40,25 +43,43 @@ public class QuickStartSample {
 
         // Prepares the metric descriptor
         String author = "bajajanirudh";
-        String MetricName = "bajajanirudh-custom-metric";
-        PrepareMetricDescriptor metricDescriptor = new PrepareMetricDescriptor();
-        Metric metric = metricDescriptor.MetricDescriptor(author, MetricName);
+        String MetricName = "bajajanirudh-custom-metric-1";
+        Map<String, String> metricLabels = new HashMap<>();
+        metricLabels.put("store_id", author);
+        Metric metric = Metric.newBuilder()
+                .setType("custom.googleapis.com/" + MetricName)
+                .putAllLabels(metricLabels)
+                .build();
 
         // create MonitoredResource
-        String InstanceID = "1234567890123456789";
         String Zone = "us-central1";
-        MonitoredResourceDescriptor monitoredResourceDescriptor = new MonitoredResourceDescriptor();
-        MonitoredResource resource = monitoredResourceDescriptor.monitoredResourceDescriptor(InstanceID, Zone);
+        Map<String, String> resourceLabels = new HashMap<>();
+        resourceLabels.put("location", Zone);
+        resourceLabels.put("cluster_name", "starter-cluster-project");
+        resourceLabels.put("project_id", "bajajanirudh-cdf-intern");
+        resourceLabels.put("namespace_name", "default");
+        resourceLabels.put("pod_name", "starter-deployment-0");
+        MonitoredResource resource = MonitoredResource.newBuilder().setType("k8s_pod").putAllLabels(resourceLabels).build();
 
 
         // Create time series request
-        WriteTimeSeries writetimeseries = new WriteTimeSeries();
-        CreateTimeSeriesRequest request = writetimeseries.writeTimeSeries(metric, resource, pointList, name);
+        TimeSeries timeSeries =
+                TimeSeries.newBuilder()
+                        .setMetric(metric)
+                        .setResource(resource)
+                        .addAllPoints(pointList)
+                        .build();
+        List<TimeSeries> timeSeriesList = new ArrayList<>();
+        timeSeriesList.add(timeSeries);
+        CreateTimeSeriesRequest request = CreateTimeSeriesRequest.newBuilder()
+                .setName(name.toString())
+                .addAllTimeSeries(timeSeriesList)
+                .build();
 
         // Writes time series data
         metricServiceClient.createTimeSeries(request);
 
-        System.out.printf("Done writing time series data.%n");
+        //System.out.printf("Done writing time series data.%n");
 
 
         metricServiceClient.close();

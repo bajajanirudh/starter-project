@@ -43,7 +43,7 @@ public class QuickStartSample {
 
         // Prepares the metric descriptor
         String author = "bajajanirudh";
-        String MetricName = "bajajanirudh-custom-metric-1";
+        String MetricName = "bajajanirudh-custom-metric";
         Map<String, String> metricLabels = new HashMap<>();
         metricLabels.put("store_id", author);
         Metric metric = Metric.newBuilder()
@@ -56,9 +56,9 @@ public class QuickStartSample {
         Map<String, String> resourceLabels = new HashMap<>();
         resourceLabels.put("location", Zone);
         resourceLabels.put("cluster_name", "starter-cluster-project");
-        resourceLabels.put("project_id", "bajajanirudh-cdf-intern");
-        resourceLabels.put("namespace_name", "default");
-        resourceLabels.put("pod_name", "starter-deployment-0");
+        resourceLabels.put("project_id", projectId);
+        resourceLabels.put("namespace_name", System.getenv("NAMESPACE"));
+        resourceLabels.put("pod_name", System.getenv("POD_NAME"));
         MonitoredResource resource = MonitoredResource.newBuilder().setType("k8s_pod").putAllLabels(resourceLabels).build();
 
 

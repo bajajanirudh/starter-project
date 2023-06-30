@@ -36,7 +36,7 @@ public class RootHandler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
         try {
-            QuickStartSample.publishMetric(0.5);
+            QuickStartSample.publishMetric(0);
         }catch (Exception e){
             throw new IOException(e);
         }

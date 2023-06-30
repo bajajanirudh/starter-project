@@ -14,6 +14,7 @@ spec:
       labels:
         app: starter
     spec:
+      terminationGracePeriodSeconds: 60
       containers:
         - name: starter
           image: us-central1-docker.pkg.dev/bajajanirudh-cdf-intern/starter-project/starter-project:0.1
